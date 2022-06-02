@@ -12,9 +12,8 @@ import {
 } from '@hawkins/components';
 import { createStyles, makeStyles, useTheme } from '@hawkins/styles';
 
-const WrappedApp = () => {
+const ThemedApp = () => {
   const [theme, setTheme] = React.useState('dark');
-  console.log(theme);
   return (
     <ThemeProvider theme={theme}>
       <App setTheme={setTheme} />
@@ -89,4 +88,4 @@ const LeftSidebarNavigationItem = (props) => {
   return <NavigationMenuItem {...props} classes={{ label: customStyles.label, rootHoverable: customStyles.rootHoverable }} />
 }
 
-ReactDOM.render(<WrappedApp />, document.getElementById('app'));
+ReactDOM.render(<ThemedApp />, document.getElementById('app'));
