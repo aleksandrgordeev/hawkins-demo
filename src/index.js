@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { 
-  ThemeProvider, 
-  VerticalNavigation, 
-  NavigationMenuGroup, 
-  NavigationMenuItem, 
+import {
+  ThemeProvider,
+  VerticalNavigation,
+  NavigationMenuGroup,
+  NavigationMenuItem,
   ToggleButtonGroup,
   ToggleButton,
   Box,
@@ -22,46 +22,19 @@ const WrappedApp = () => {
   );
 };
 
-const App = (props) => {
-  return (
-    <div className='app-root' style={{height: '100vh', display: 'flex', flexDirection: 'row'}}>
-      <LeftNavigation {...props} />
-    </div>
-  );
-}
-
-const LeftNavigation = ({setTheme}) => {
+const App = ({ setTheme }) => {
   const theme = useTheme();
   console.log(theme);
   return (
-    <>
-      <VerticalNavigation>
-        <NavigationMenuGroup>
-          <LeftSidebarNavigationItem 
-            href='https://netflix.com'
-            label='News'
-            rel='nofollow noopener'
-            target='_blank'
-          />
-          <LeftSidebarNavigationItem 
-            href='https://netflix.com'
-            label='Tutorials'
-            rel='nofollow noopener'
-            target='_blank'
-          />
-        </NavigationMenuGroup>
-        <Text>
-          Some random user component
-        </Text>
-      </VerticalNavigation>
+    <div className='app-root' style={{ height: '100vh', display: 'flex', flexDirection: 'row' }}>
+      <LeftNavigation />
       <Box
         display='flex'
-        alignItems={'center'}
-        alignContent='center'
+        alignItems={'flex-start'}
         flexGrow='1'
         backgroundColor={theme.hawkins.ui.backgroundColor0}
       >
-        <ToggleButtonGroup 
+        <ToggleButtonGroup
           defaultValue="dark"
           onChange={(ev, newValue) => {
             setTheme(newValue);
@@ -71,7 +44,32 @@ const LeftNavigation = ({setTheme}) => {
           <ToggleButton value="light">Light Theme</ToggleButton>
         </ToggleButtonGroup>
       </Box>
-    </>
+    </div>
+  );
+}
+
+const LeftNavigation = () => {
+
+  return (
+    <VerticalNavigation>
+      <NavigationMenuGroup>
+        <LeftSidebarNavigationItem
+          href='https://netflix.com'
+          label='News'
+          rel='nofollow noopener'
+          target='_blank'
+        />
+        <LeftSidebarNavigationItem
+          href='https://netflix.com'
+          label='Tutorials'
+          rel='nofollow noopener'
+          target='_blank'
+        />
+      </NavigationMenuGroup>
+      <Text>
+        Some random user component
+      </Text>
+    </VerticalNavigation>
   );
 }
 
@@ -88,7 +86,7 @@ const LeftSidebarNavigationItem = (props) => {
       }
     });
   })();
-  return <NavigationMenuItem {...props} classes={{label: customStyles.label, rootHoverable: customStyles.rootHoverable}} />
+  return <NavigationMenuItem {...props} classes={{ label: customStyles.label, rootHoverable: customStyles.rootHoverable }} />
 }
 
 ReactDOM.render(<WrappedApp />, document.getElementById('app'));
